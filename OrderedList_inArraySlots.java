@@ -1,4 +1,4 @@
-/**
+  /**
   OrderedList_inArraySlots, holding Integers
 
   A list with the invariant the elements are in order by
@@ -17,24 +17,32 @@ public class OrderedList_inArraySlots
      */
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
-        this();  // violates the directions for this hw
-        
-        System.out.println( 
-            "Change this to report on progress."
-          + System.lineSeparator()
-          + "You were going to do that even without prompting, right?"
-          );
+        for ( int index = 0; index < unordered.size(); index++) {
+            int lowestIndex = champIndex( unordered, index);
+            int currentVal = unordered.get( index);
+            unordered.set( index, unordered.get( lowestIndex));
+            unordered.set( lowestIndex, currentVal);
+        }
+        list_iAS = unordered;
     }
 
 
     /** 
       helper function for constructor
-      Write good English here, reflecting good thinking.
-      @return ??
+      @return the lowest value in a given array 
+      after a given index
      */
-     private int champIndex() {
-        return 0;  // replace this line
-     }
+    private int champIndex( ArrayList<Integer> array, int startIndex) {
+      int champIndex = startIndex;
+      Integer champ = array.get( startIndex);
+      for ( int index = startIndex; index < array.size(); index++) {
+          if ( champ > array.get( index)) {
+              champIndex = index;  
+              champ = array.get( index);
+          }
+      }
+      return champIndex;
+    }
 
 
     // ------ code from previous assignments below here ----
